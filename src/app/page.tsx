@@ -2,7 +2,7 @@ import Home from "@/components/home";
 
 export default function page() {
   return (
-    <main className="">
+    <main className="" suppressHydrationWarning={true}>
       <Home />
     </main>
   );

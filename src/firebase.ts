@@ -10,13 +10,6 @@ const firebaseConfig = {
   messagingSenderId: process.env.NEXT_PUBLIC_MESSAGING_SENDER_ID,
   appId: process.env.NEXT_PUBLIC_APP_ID,
   measurementId: process.env.NEXT_PUBLIC_MEASUREMENT_ID,
-  // apiKey: "AIzaSyD-8cCLqRZbK0epCxJ-fSRkKa-FCR0-T0M",
-  // authDomain: "pantry-tracker-b8493.firebaseapp.com",
-  // projectId: "pantry-tracker-b8493",
-  // storageBucket: "pantry-tracker-b8493.appspot.com",
-  // messagingSenderId: "1035733572722",
-  // appId: "1:1035733572722:web:954bd16df4d17a4804b6eb",
-  // measurementId: "G-FL72PM4Q72",
 };
 
 const app = initializeApp(firebaseConfig);

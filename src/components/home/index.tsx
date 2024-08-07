@@ -18,12 +18,12 @@ import { useRouter } from "next/navigation";
 const Home = () => {
   const [inventory, setInventory] = useState<any[]>([]);
   const [open, setOpen] = useState(false);
-  let userId;
+  let userId: string = "";
 
   const [user, setUser] = useState<string>(() => {
     if (typeof window !== "undefined") {
       const storedValue = localStorage.getItem("user");
-      return storedValue ? storedValue : "user";
+      return storedValue ? storedValue : "";
     }
     return "";
   });
@@ -36,16 +36,13 @@ const Home = () => {
     // eslint-disable-next-line
   }, [user]);
 
-  if (typeof window !== "undefined" && !user) {
+  if (typeof window !== "undefined" && user !== "" && user !== null) {
     userId = JSON.parse(user).uid;
   }
 
   const updateInventory = async () => {
     const inventoryRef = collection(db, "inventory");
-    const snapshot = query(
-      inventoryRef,
-      where("user_id", "==", JSON.parse(user).uid)
-    );
+    const snapshot = query(inventoryRef, where("user_id", "==", userId));
     const docs = await getDocs(snapshot);
     const inventoryList: any[] = [];
     docs.forEach((doc) => {
@@ -97,6 +94,10 @@ const Home = () => {
     localStorage.removeItem("user");
     router.push("/sign-in");
   };
+
+  if (!user) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <Box
